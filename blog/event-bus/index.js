@@ -8,8 +8,12 @@ const APP_PORT = 4005;
 app.use(express.json());
 app.use(cors());
 
+const events = [];
+
 app.post("/events", async (req, res) => {
   const event = req.body;
+  events.push(event);
+
   await axios.post("http://localhost:4000/events", event).catch((err) => {
     console.log(err);
   });
@@ -25,6 +29,10 @@ app.post("/events", async (req, res) => {
   res.status(200).json({
     message: "event fired",
   });
+});
+
+app.get("/events", (req, res) => {
+  res.send(events);
 });
 
 app.listen(APP_PORT, () => {
