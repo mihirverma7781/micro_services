@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts
+  name: event-bus-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: posts
+      app: event-bus
   template:
     metadata:
       labels:
-        app: posts
+        app: event-bus
     spec:
       containers:
-        - name: posts
-          image: mihirverma7781/posts
+        - name: event-bus
+          image: mihirverma7781/event-bus
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: post-clustureip-srv
+  name: event-bus-srv
 spec:
   selector:
-    app: post
+    app: event-bus
   ports:
-  - name: post
-    port: 4000
-    targetPort: 4000
+  - name: event-bus
+    port: 4005
+    targetPort: 4005
