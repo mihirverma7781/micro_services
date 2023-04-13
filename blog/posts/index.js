@@ -18,7 +18,7 @@ app.get("/posts", (req, res) => {
   });
 });
 
-app.post("/posts", async (req, res) => {
+app.post("/posts/create", async (req, res) => {
   const id = randomBytes(4).toString("hex");
   const { title } = req.body;
   posts[id] = {
@@ -46,6 +46,6 @@ app.post("/events", (req, res) => {
 });
 
 app.listen(APP_PORT, () => {
-  console.log("Post app v2");
+  console.log("Post app v3");
   console.log(`Post app listening on port ${APP_PORT}!`);
 });
